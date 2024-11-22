@@ -20,5 +20,4 @@ public class InsuranceApplication {
         System.out.println(contract);
         context.close();
     }
-
 }

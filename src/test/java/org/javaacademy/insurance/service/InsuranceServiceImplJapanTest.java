@@ -49,6 +49,7 @@ public class InsuranceServiceImplJapanTest {
                 number,
                 valueOf(20_000),
                 coverageAmountInsurance,
+                "JPL",
                 fullName,
                 "Japan",
                 insuranceType);
@@ -73,6 +74,7 @@ public class InsuranceServiceImplJapanTest {
                 number,
                 valueOf(162_000),
                 coverageAmountInsurance,
+                "JPL",
                 fullName,
                 "Japan",
                 insuranceType);
@@ -91,6 +93,7 @@ public class InsuranceServiceImplJapanTest {
                 number,
                 valueOf(165_000),
                 valueOf(10_000_000),
+                "JPL",
                 fullName,
                 Country.JAPAN.getNameCountry(),
                 InsuranceType.HEALTH);
@@ -99,6 +102,7 @@ public class InsuranceServiceImplJapanTest {
                 number,
                 valueOf(165_000),
                 valueOf(10_000_000),
+                "JPL",
                 fullName,
                 Country.JAPAN.getNameCountry(),
                 InsuranceType.HEALTH);

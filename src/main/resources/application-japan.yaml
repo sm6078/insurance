@@ -1,5 +1,6 @@
 app:
   country: Japan
+  currency: JPY
   coefficient:
       robbery: 0.01
       health: 0.015

@@ -6,6 +6,7 @@ import org.javaacademy.insurance.config.InsuranceProperty;
 import org.javaacademy.insurance.exception.ContractException;
 import org.javaacademy.insurance.model.Contract;
 import org.javaacademy.insurance.model.Country;
+import org.javaacademy.insurance.model.Currency;
 import org.javaacademy.insurance.model.InsuranceType;
 import org.javaacademy.insurance.service.calc.InsuranceCalcService;
 import org.javaacademy.insurance.storage.Archive;
@@ -29,9 +30,9 @@ public class InsuranceServiceImpl implements InsuranceService {
                 insuranceCalcService.getCostInsurance(coverageAmountInsurance, insuranceType),
                 coverageAmountInsurance,
                 fullName,
-                insuranceProperty.getCountry(),
+                checkValidCountry(insuranceProperty.getCountry()),
+                checkValidCurrency(insuranceProperty.getCurrency()),
                 insuranceType);
-        setCurrency(contract);
         log.info("create contract {}", contract);
         archive.add(contract);
         log.info("add contract to archive, number {}", contract.getNumber());
@@ -45,18 +46,25 @@ public class InsuranceServiceImpl implements InsuranceService {
         return contract;
     }
 
-    private void setCurrency(Contract contract) {
-        Country country = checkValidCountry(contract);
-        contract.setCurrency(country.getCurrency());
-    }
-
-    private Country checkValidCountry(Contract contract) {
-        return Arrays.stream(Country.values())
-                .filter(country -> country.getNameCountry().equals(contract.getCountry()))
+    private String checkValidCountry(String countryFrom) {
+        Country countryResult = Arrays.stream(Country.values())
+                .filter(country -> country.getNameCountry().equals(countryFrom))
                 .findAny()
                 .orElseThrow(() -> new ContractException(
                         String.format("Error creating contract. "
                                         + "The country  cannot %s be used to create a contract. ",
-                                contract.getCountry())));
+                                countryFrom)));
+        return countryResult.getNameCountry();
+    }
+
+    private String checkValidCurrency(String currencyFrom) {
+        Currency result = Arrays.stream(Currency.values())
+                .filter(currency -> currency.getNameCurrency().equals(currencyFrom))
+                .findAny()
+                .orElseThrow(() -> new ContractException(
+                        String.format("Error creating contract. "
+                                        + "The currency cannot %s be used to create a contract. ",
+                                currencyFrom)));
+        return result.getNameCurrency();
     }
 }

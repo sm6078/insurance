@@ -24,8 +24,7 @@ public class Contract {
     private final String number;
     private final BigDecimal costInsurance;
     private final BigDecimal coverageAmountInsurance;
-    @Setter
-    private String currency;
+    private final String currency;
     private final String fullName;
     private final String country;
     private final InsuranceType insuranceType;

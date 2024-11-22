@@ -1,5 +1,6 @@
 app:
   country: Brazil
+  currency: BRL
   coefficient:
     robbery: 0.05
     health: 0.03

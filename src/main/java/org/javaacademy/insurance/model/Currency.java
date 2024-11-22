@@ -5,9 +5,10 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum Country {
-    JAPAN("Japan"),
-    BRAZIL("Brazil");
+public enum Currency {
+    JPY("JPY"),
+    BRL("BRL");
 
-    private final String nameCountry;
+    private final String nameCurrency;
 }
+

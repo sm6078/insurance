@@ -9,4 +9,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 public class InsuranceProperty {
     private String country;
+    private String currency;
 }
