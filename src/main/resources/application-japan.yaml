@@ -1,0 +1,7 @@
+app:
+  country: Japan
+  coefficient:
+      robbery: 0.01
+      health: 0.015
+
+
