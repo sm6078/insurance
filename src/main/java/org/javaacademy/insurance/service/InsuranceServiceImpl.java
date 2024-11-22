@@ -33,7 +33,15 @@ public class InsuranceServiceImpl implements InsuranceService {
                 insuranceType);
         setCurrency(contract);
         log.info("create contract {}", contract);
-        addArchive(archive, contract);
+        archive.add(contract);
+        log.info("add contract to archive, number {}", contract.getNumber());
+        return contract;
+    }
+
+    @Override
+    public Contract paidInsurance(String numberInsurance) {
+        Contract contract = archive.findContractByNumber(numberInsurance);
+        contract.setPaid(true);
         return contract;
     }
 
@@ -50,10 +58,5 @@ public class InsuranceServiceImpl implements InsuranceService {
                         String.format("Error creating contract. "
                                         + "The country  cannot %s be used to create a contract. ",
                                 contract.getCountry())));
-    }
-
-    @Override
-    public Contract paidInsurance(Archive archive, String numberInsurance) {
-        return paidInsurance(archive, numberInsurance);
     }
 }

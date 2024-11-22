@@ -25,10 +25,6 @@ import static org.mockito.ArgumentMatchers.any;
 @ActiveProfiles("japan")
 public class InsuranceServiceImplJapanTest {
 
-    //private final static String TEST_FULL_NAME = "Иванов Иван Иванович";
-    //private final static String TEST_NUMBER = "Один";
-
-
     @Autowired
     private InsuranceService insuranceService;
 
@@ -54,7 +50,7 @@ public class InsuranceServiceImplJapanTest {
                 valueOf(20_000),
                 coverageAmountInsurance,
                 fullName,
-                Country.JAPAN.getNameCountry(),
+                "Japan",
                 insuranceType);
         expectedContract.setPaid(false);
         Contract resultContract = insuranceService.offerInsurance(coverageAmountInsurance,
@@ -78,7 +74,7 @@ public class InsuranceServiceImplJapanTest {
                 valueOf(162_000),
                 coverageAmountInsurance,
                 fullName,
-                Country.JAPAN.getNameCountry(),
+                "Japan",
                 insuranceType);
         expectedContract.setPaid(false);
         Contract resultContract = insuranceService.offerInsurance(coverageAmountInsurance,
@@ -99,16 +95,16 @@ public class InsuranceServiceImplJapanTest {
                 Country.JAPAN.getNameCountry(),
                 InsuranceType.HEALTH);
         unpaidInsuranceContract.setPaid(false);
-        Contract expectedInsuranceContract = new Contract(
+        Contract expectedContract = new Contract(
                 number,
                 valueOf(165_000),
                 valueOf(10_000_000),
                 fullName,
                 Country.JAPAN.getNameCountry(),
                 InsuranceType.HEALTH);
-        expectedInsuranceContract.setPaid(true);
+        expectedContract.setPaid(true);
         Mockito.when(archive.findContractByNumber(any())).thenReturn(unpaidInsuranceContract);
-        Contract resultInsuranceContract = insuranceService.paidInsurance(archive, number);
-        Assertions.assertEquals(expectedInsuranceContract, resultInsuranceContract);
+        Contract resultContract = insuranceService.paidInsurance(number);
+        Assertions.assertEquals(expectedContract, resultContract);
     }
 }
